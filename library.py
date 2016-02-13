@@ -153,11 +153,66 @@ wordsToNum("one million one hundred twenty thousand twenty three")
 ### wordsToCurrency (string, string)
 ### Accepts two strings (number in word format, [JPY|USD|PHP]) and outputs the number with the currency
 def wordsToCurrency(word, currency):
-	output = 0
-	print(output)
-	
-	
-	
+	output = []
+	final = 0;
+	hundreds = 0
+	thousands = 0
+	millions = 0
+	def switchNum (x):
+		return {
+			"hundred"	: 10**2,
+			"thousand"	: 10**3,
+			"million"	: 10**6,
+
+			"eleven"	: 11,
+			"twelve"	: 12,
+			"thirteen"	: 13,
+			"fourteen"	: 14,
+			"fifteen"	: 15,
+			"sixteen"	: 16,
+			"seventeen"	: 17,
+			"eighteen"	: 18,
+			"nineteen"	: 19,
+
+			"ten"		: 10,
+			"twenty"	: 20,
+			"thirty"	: 30,
+			"forty"		: 40,
+			"fifty"		: 50,
+			"sixty"		: 60,
+			"seventy"	: 70,
+			"eighty"	: 80,
+			"ninety"	: 90,
+			
+			"zero"		: 0,
+			"one"		: 1,
+			"two"		: 2,
+			"three"		: 3,
+			"four"		: 4,
+			"five"		: 5,
+			"six"		: 6,
+			"seven"		: 7,
+			"eight"		: 8,
+			"nine"		: 9
+		}.get(x, 0)
+	word = word.split(" ")
+	word.reverse()
+	for counter in range(0, len(word)):
+		tmp = word.pop()
+		if tmp == "million":
+			millions = hundreds * (10**6)
+			hundreds = 0
+		elif tmp == "thousand":
+			thousands = hundreds * (10**3)
+			hundreds = 0			
+		else:
+			hundreds += switchNum(tmp)
+	final = hundreds + thousands + millions
+	print(currency + ((str)(final)))
+
+
+
+wordsToCurrency("one hundred twenty one", "JPY")
 ### numberDelimited (number, character, number)
 ### Accepts a number, a character / delimiter and another number
 ### First number will be used as the number itself to be printed out 
