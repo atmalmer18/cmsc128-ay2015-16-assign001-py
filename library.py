@@ -54,18 +54,23 @@ def numToWords(num):
 	size = 0
 	while (num >= 0):
 		if size == 9:
+			# if in the millionth place
 			numbers.append(10**6)
 			size += 1
 		if size == 4:
+			# if in the thousand place
 			numbers.append(10**3)
 			size += 1
 		if size == 2 or size == 7:
+			# if number is a hundred
 			tmp = numbers.pop()
 			if tmp == 1:
+				# will handle numbers from 10 to 19
 				ones = numbers.pop()
 				numbers.append(-1)
 				numbers.append((tmp * 10) + ones)
 			else:
+				# will handle numbers from 20 to 99
 				numbers.append(tmp * 10)
 			numbers.append(10**2)
 			size += 1
@@ -75,6 +80,7 @@ def numToWords(num):
 		if num == 0:
 			break
 	for counter in range(0, size):
+		# print the result one by one
 		digit = numbers.pop()
 		if digit >= 10 and digit <= 19:
 			sys.stdout.write(switchNum(getTens(digit)) + " ")
@@ -88,6 +94,7 @@ def numToWords(num):
 
 ### wordsToNum (string)
 ### Accepts a number in word form and returns its equivalent in number format
+### Logic: the word thousand and million will serve as flags whether to multiply them by 10**3 and 10**6 respectively
 def wordsToNum(word):
 	def switchNum (x):
 		return {
@@ -134,6 +141,7 @@ def wordsToNum(word):
 	word = word.split(" ")
 	word.reverse()
 	for counter in range(0, len(word)):
+		# convert each to number
 		tmp = word.pop()
 		if tmp == "million":
 			millions = hundreds * (10**6)
@@ -150,6 +158,7 @@ def wordsToNum(word):
 
 ### wordsToCurrency (string, string)
 ### Accepts two strings (number in word format, [JPY|USD|PHP]) and outputs the number with the currency
+### Logic: the word thousand and million will serve as flags whether to multiply them by 10**3 and 10**6 respectively
 def wordsToCurrency(word, currency):
 	def switchNum (x):
 		return {
@@ -196,6 +205,7 @@ def wordsToCurrency(word, currency):
 	word = word.split(" ")
 	word.reverse()
 	for counter in range(0, len(word)):
+		# convert everything back to numbers
 		tmp = word.pop()
 		if tmp == "million":
 			millions = hundreds * (10**6)
@@ -217,15 +227,19 @@ def wordsToCurrency(word, currency):
 ### Last number will define the number of jumps for the delimiter to be placed
 def numberDelimited(num, delimiter, jump):
 	output = ""
+	# convert string to number
 	num = (str)(num)
+	# separate each number 
 	num = list(num)
 	size = len(num) - jump
 	tmp = size
 	while tmp >= 0:
+		# insert delimiter while length of number minus jump is not equal to 0
 		num.insert(tmp,delimiter)
 		tmp -= jump
 	num.reverse()
 	for counter in range(0, len(num)):
+		# convert back as one entity
 		output += (str)(num.pop())
 	print(output)
 	
