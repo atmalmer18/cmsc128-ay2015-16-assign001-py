@@ -219,8 +219,19 @@ wordsToCurrency("one hundred twenty one", "JPY")
 ### The character will be the delimiter for the first number
 ### Last number will define the number of jumps for the delimiter to be placed
 def numberDelimited(num, delimiter, jump):
-	output = 0
+	output = ""
+	num = (str)(num)
+	num = list(num)
+	size = len(num) - jump
+	tmp = size
+	while tmp >= 0:
+		num.insert(tmp,delimiter)
+		tmp -= jump
+	num.reverse()
+	for counter in range(0, len(num)):
+		output += (str)(num.pop())
 	print(output)
 	
+
 	
-	
+numberDelimited(123456789,',',2)
