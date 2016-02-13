@@ -86,7 +86,6 @@ def numToWords(num):
 
 
 
-numToWords(1123312)
 ### wordsToNum (string)
 ### Accepts a number in word form and returns its equivalent in number format
 def wordsToNum(word):
@@ -149,7 +148,6 @@ def wordsToNum(word):
 
 
 
-wordsToNum("one million one hundred twenty thousand twenty three")
 ### wordsToCurrency (string, string)
 ### Accepts two strings (number in word format, [JPY|USD|PHP]) and outputs the number with the currency
 def wordsToCurrency(word, currency):
@@ -212,7 +210,6 @@ def wordsToCurrency(word, currency):
 
 
 
-wordsToCurrency("one hundred twenty one", "JPY")
 ### numberDelimited (number, character, number)
 ### Accepts a number, a character / delimiter and another number
 ### First number will be used as the number itself to be printed out 
@@ -234,4 +231,3 @@ def numberDelimited(num, delimiter, jump):
 	
 
 	
-numberDelimited(123456789,',',2)
